@@ -4,7 +4,7 @@ import type { VoteType } from "../../types/votes.ts";
 interface VoteOptionsProps {
   onVote: (type: VoteType) => void;
   onReset: () => void;
-  canReset: number;
+  canReset: boolean;
 }
 
 export default function VoteOptions({
@@ -15,30 +15,20 @@ export default function VoteOptions({
   return (
     <div className={css.container}>
       <button
-        onClick={(event) => {
-          onVote(event.currentTarget.textContent?.toLowerCase() as VoteType);
+        onClick={() => {
+          onVote("good");
         }}
         className={css.button}
       >
         Good
       </button>
-      <button
-        onClick={(event) =>
-          onVote(event.currentTarget.textContent?.toLowerCase() as VoteType)
-        }
-        className={css.button}
-      >
+      <button onClick={() => onVote("neutral")} className={css.button}>
         Neutral
       </button>
-      <button
-        onClick={(event) =>
-          onVote(event.currentTarget.textContent?.toLowerCase() as VoteType)
-        }
-        className={css.button}
-      >
+      <button onClick={() => onVote("bad")} className={css.button}>
         Bad
       </button>
-      {canReset > 0 && (
+      {canReset && (
         <button onClick={onReset} className={`${css.button} ${css.reset}`}>
           Reset
         </button>

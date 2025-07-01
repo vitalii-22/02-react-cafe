@@ -4,7 +4,7 @@ import type { Votes } from "../../types/votes";
 interface VoteStatsProps {
   votes: Votes;
   totalVotes: number;
-  positiveRate: string;
+  positiveRate: number;
 }
 
 export default function VoteStats({
@@ -27,7 +27,7 @@ export default function VoteStats({
         Total: <strong>{totalVotes}</strong>
       </p>
       <p className={styles.stat}>
-        Positive: <strong>{positiveRate}</strong>
+        Positive: <strong>{positiveRate}%</strong>
       </p>
     </div>
   );

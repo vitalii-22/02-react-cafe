@@ -23,9 +23,10 @@ function App() {
   }
 
   const totalVotes: number = votes.bad + votes.good + votes.neutral;
-  const positiveRate: string = ` ${
-    totalVotes ? Math.round((votes.good / totalVotes) * 100) : 0
-  }%`;
+  const positiveRate: number = totalVotes
+    ? Math.round((votes.good / totalVotes) * 100)
+    : 0;
+  const showReset: boolean = totalVotes > 0;
 
   function resetVotes() {
     setVotes({
@@ -42,7 +43,7 @@ function App() {
         <VoteOptions
           onVote={handleVote}
           onReset={resetVotes}
-          canReset={totalVotes}
+          canReset={showReset}
         />
         {totalVotes > 0 ? (
           <VoteStats
